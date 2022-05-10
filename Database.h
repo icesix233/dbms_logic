@@ -10,7 +10,7 @@ public:
 	vector<Table> tables;
 	vector<string> nameOfTables;
 	// 创建名为tableName的表
-	void createTable(string tableName);
+	void createTable(string tableName, int _colNum, vector<string> _colName, vector<string> _colType);
 	// 获取第_tableIndex个表的对象实例
 	Table getTable(int _tableIndex);
 	// 获取名字为_name的表的对象实例

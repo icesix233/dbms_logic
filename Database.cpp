@@ -6,8 +6,8 @@
 #include "Table.h"
 using namespace std;
 
-void Database::createTable(string tableName) {
-	Table newTable;
+void Database::createTable(string tableName, int _colNum, vector<string> _colName, vector<string> _colType) {
+	Table newTable(_colNum, _colName, _colType);
 	tables.push_back(newTable);
 	nameOfTables.push_back(tableName);
 	numOfTable++;

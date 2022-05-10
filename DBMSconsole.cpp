@@ -4,17 +4,13 @@
 #include "Database.h"
 using namespace std;
 
+Database database;
 Table table;
 
 void createTableByInput();
 
 int main()
 {
-	// 创建数据库并使用其中一个表
-	Database database;
-	database.createTable("Student");
-	table = database.getTable("Student");
-
 	// 通过输入创建一个表并输入测试数据
 	createTableByInput();
 
@@ -52,7 +48,8 @@ void createTableByInput() {
 	}
 	cout << endl;
 
-	table.createTable(colNum, colName, colType);
+	database.createTable("Student", colNum, colName, colType);
+	table = database.getTable("Student");
 
 	table.printTable();
 

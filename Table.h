@@ -13,6 +13,8 @@ public:
 	vector<string> colType;	  // 每一列的数据类型
 	vector< vector<string> > cols;  // 表的所有内容数据
 
+	// 默认构造函数，一般不用
+	Table();
 	// 构造函数，创建表，参数依次为 列数，各列名字，各列数据类型
 	Table(int _colNum, vector<string> _colName, vector<string> _colType);
 	// 插入一行

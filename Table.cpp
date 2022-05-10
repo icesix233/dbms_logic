@@ -5,6 +5,10 @@
 #include <string>
 using namespace std;
 
+Table::Table() {
+	colNum = 0;
+}
+
 Table::Table(int _colNum, vector<string> _colName, vector<string> _colType) {
 	colNum = _colNum;
 	colName.assign(_colName.begin(), _colName.end());
