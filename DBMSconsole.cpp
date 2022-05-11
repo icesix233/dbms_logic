@@ -44,6 +44,7 @@ int main()
 	manager.database_on.createTable("course", 2, _colName, _colType);
 	cout << "Table: " << manager.database_on.getNameOfTable(2) << endl;
 	manager.database_on.getTable(2).printTableClass();
+	manager.database_on.deleteTable("teacher");
 	
 	manager.database_on.saveTables();
 }

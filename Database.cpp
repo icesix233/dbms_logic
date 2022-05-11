@@ -101,6 +101,8 @@ void Database::deleteTable(string _name)
 
 void Database::deleteTable(int _TableIndex)
 {
+	string nameDel = nameOfTables[_TableIndex];
+
 	vector<TableClass> newTables;
 	newTables.assign(Tables.begin(), Tables.begin()+_TableIndex);
 	for (int i = _TableIndex + 1; i < numOfTable; i++) {
@@ -108,4 +110,11 @@ void Database::deleteTable(int _TableIndex)
 	}
 	Tables = newTables;
 	numOfTable--;
+
+	// É¾³ýÎÄ¼þ¼Ð
+	string folderPath = ".\\data\\" + name + "\\" + nameDel;
+
+	string command;
+	command = "rmdir " + folderPath;
+	system(command.c_str());
 }

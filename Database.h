@@ -35,6 +35,8 @@ public:
 
 	// 删除名字为_name的表
 	void deleteTable(string _name);
+
+private:
 	// 删除第_TableIndex个表
 	void deleteTable(int _TableClassIndex);
 };
