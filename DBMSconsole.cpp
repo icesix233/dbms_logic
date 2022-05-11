@@ -1,33 +1,50 @@
 ﻿#include <iostream>
+#include <fstream>
 #include <vector>
-#include "Table.h"
+#include "TableClass.h"
 #include "Database.h"
+#include "Manager.h"
 using namespace std;
 
 Database database;
-Table table;
+TableClass tableClass;
 
-void createTableByInput();
+void createTableClassByInput();
+void changeTableContent();
 
 int main()
 {
 	// 通过输入创建一个表并输入测试数据
-	createTableByInput();
+	//createTableClassByInput();
+	// 测试简单的增删改查
+	//changeTableContent();
 
-	cout << " 修改第1行内容为 999,John,8.8 " << endl;
-	vector<string> newrow = { "999","John","8.8" };
-	table.changeRow(1, newrow);
-	table.printTable();
-
-	cout << " 获取第1行第0列的数据 " << endl;
-	cout << table.getRow(1)[0] << endl;;
-
-	cout << " 查找ID为999的数据的NAME项 " << endl;
-	int _index = table.getRowIndex(0, "999");
-	cout << table.getRow(_index)[1] << endl;
+	Manager& manager = Manager::get_instance();
+	manager.readDatabase();
+	bool b = manager.openDatabase("db3");
+	cout << "open: " << b << "  " << manager.database_on.name << endl;
+	manager.createDatabase("db5");
+	bool b2 = manager.openDatabase("db5");
+	cout << "open: " << b2 << "  " << manager.database_on.name << endl;
+	manager.deleteDatabase("db3");
+	manager.saveDatabase();
 }
 
-void createTableByInput() {
+void changeTableContent() {
+	cout << " 修改第1行内容为 999,John,8.8 " << endl;
+	vector<string> newrow = { "999","John","8.8" };
+	tableClass.changeRow(1, newrow);
+	tableClass.printTableClass();
+
+	cout << " 获取第1行第0列的数据 " << endl;
+	cout << tableClass.getRow(1)[0] << endl;
+
+	cout << " 查找ID为999的数据的NAME项 " << endl;
+	int _index = tableClass.getRowIndex(0, "999");
+	cout << tableClass.getRow(_index)[1] << endl;
+}
+
+void createTableClassByInput() {
 	// 输入存储数据
 	int colNum;
 	vector<string> colName, colType;
@@ -48,10 +65,10 @@ void createTableByInput() {
 	}
 	cout << endl;
 
-	database.createTable("Student", colNum, colName, colType);
-	table = database.getTable("Student");
+	database.createTableClass("Student", colNum, colName, colType);
+	tableClass = database.getTableClass("Student");
 
-	table.printTable();
+	tableClass.printTableClass();
 
 	// 测试插入表内容
 	int insertRowCount;
@@ -65,7 +82,7 @@ void createTableByInput() {
 			cin >> s;
 			thisRow.push_back(s);
 		}
-		table.insertRow(thisRow);
+		tableClass.insertRow(thisRow);
 	}
-	table.printTable();
+	tableClass.printTableClass();
 }

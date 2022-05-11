@@ -3,55 +3,63 @@
 #include <iostream>
 #include <iterator>
 #include <string>
-#include "Table.h"
+#include "TableClass.h"
 using namespace std;
 
-void Database::createTable(string tableName, int _colNum, vector<string> _colName, vector<string> _colType) {
-	Table newTable(_colNum, _colName, _colType);
-	tables.push_back(newTable);
-	nameOfTables.push_back(tableName);
-	numOfTable++;
+Database::Database() {
+	name = "no name";
 }
 
-Table Database::getTable(int _tableIndex) {
-	return tables[_tableIndex];
+Database::Database(string _name) {
+	name = _name;
 }
 
-Table Database::getTable(string _name)
+void Database::createTableClass(string TableClassName, int _colNum, vector<string> _colName, vector<string> _colType) {
+	TableClass newTableClass(_colNum, _colName, _colType);
+	TableClasss.push_back(newTableClass);
+	nameOfTableClasss.push_back(TableClassName);
+	numOfTableClass++;
+}
+
+TableClass Database::getTableClass(int _TableClassIndex) {
+	return TableClasss[_TableClassIndex];
+}
+
+TableClass Database::getTableClass(string _name)
 {
-	for (int i = 0; i < numOfTable; i++) {
-		if (nameOfTables[i] == _name)
-			return tables[i];
+	for (int i = 0; i < numOfTableClass; i++) {
+		if (nameOfTableClasss[i] == _name)
+			return TableClasss[i];
 	}
-	return tables[0];
+	return TableClasss[0];
 }
 
-string Database::getNameOfTable(int _tableIndex) {
-	return nameOfTables[_tableIndex];
+string Database::getNameOfTableClass(int _TableClassIndex) {
+	return nameOfTableClasss[_TableClassIndex];
 }
 
-void Database::deleteTable(string _name)
+void Database::deleteTableClass(string _name)
 {
 	int i;
-	for (i = 0; i < numOfTable; i++) {
-		if (nameOfTables[i] == _name)
+	for (i = 0; i < numOfTableClass; i++) {
+		if (nameOfTableClasss[i] == _name)
 			break;
 	}
-	deleteTable(i);
+	deleteTableClass(i);
 }
 
-void Database::deleteTable(int _tableIndex)
+void Database::deleteTableClass(int _TableClassIndex)
 {
-	vector<Table> newTables;
-	newTables.assign(tables.begin(), tables.begin()+_tableIndex);
-	for (int i = _tableIndex + 1; i < numOfTable; i++) {
-		newTables.push_back(tables[i]);
+	vector<TableClass> newTableClasss;
+	newTableClasss.assign(TableClasss.begin(), TableClasss.begin()+_TableClassIndex);
+	for (int i = _TableClassIndex + 1; i < numOfTableClass; i++) {
+		newTableClasss.push_back(TableClasss[i]);
 	}
-	tables = newTables;
-	numOfTable--;
+	TableClasss = newTableClasss;
+	numOfTableClass--;
 }
 
-int Database::getNumOfTable()
+int Database::getNumOfTableClass()
 {
-	return numOfTable;
+	return numOfTableClass;
 }

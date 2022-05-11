@@ -3,7 +3,7 @@
 #include <vector>
 using namespace std;
 
-class Table
+class TableClass
 {
 
 public:
@@ -14,9 +14,9 @@ public:
 	vector< vector<string> > cols;  // 表的所有内容数据
 
 	// 默认构造函数，一般不用
-	Table();
+	TableClass();
 	// 构造函数，创建表，参数依次为 列数，各列名字，各列数据类型
-	Table(int _colNum, vector<string> _colName, vector<string> _colType);
+	TableClass(int _colNum, vector<string> _colName, vector<string> _colType);
 	// 插入一行
 	void insertRow(vector<string> _row);
 	// 修改某一行内容 (参数rowindex从0开始)
@@ -28,7 +28,7 @@ public:
 	// 获取第_colIndex列内容为_data的那一行的行号
 	int getRowIndex(int _colIndex, string _data);
 	// 打印表的内容
-	void printTable();
+	void printTableClass();
 
 	// 获取主键信息
 	string getPriKey();

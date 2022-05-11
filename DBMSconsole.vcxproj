@@ -139,12 +139,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Table.cpp" />
+    <ClCompile Include="Manager.cpp" />
+    <ClCompile Include="TableClass.cpp" />
     <ClCompile Include="DBMSconsole.cpp" />
     <ClCompile Include="Database.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Table.h" />
+    <ClInclude Include="Manager.h" />
+    <ClInclude Include="TableClass.h" />
     <ClInclude Include="Database.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

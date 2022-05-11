@@ -18,18 +18,24 @@
     <ClCompile Include="DBMSconsole.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Table.cpp">
+    <ClCompile Include="TableClass.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Database.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Manager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Table.h">
+    <ClInclude Include="TableClass.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Database.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
