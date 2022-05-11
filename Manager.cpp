@@ -21,6 +21,13 @@ Manager::Manager() {
 void Manager::createDatabase(string _name) {
     Database newDatabase(_name);
     databases.push_back(_name);
+
+    // 新建文件夹
+    string folderPath = ".\\data\\" + _name;
+
+    string command;
+    command = "mkdir " + folderPath;
+    system(command.c_str());
 }
 
 void Manager::readDatabase()
@@ -67,4 +74,11 @@ void Manager::deleteDatabase(string _name) {
         }
     }
     databases.erase(iterDel);
+
+    // 删除文件夹
+    string folderPath = ".\\data\\" + _name;
+
+    string command;
+    command = "rmdir " + folderPath;
+    system(command.c_str());
 }

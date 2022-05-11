@@ -1,0 +1,6 @@
+student
+ID NAME CLASS GRADE 
+number string string float 
+teacher
+ID NAME DEPARTMENT 
+number string string 

@@ -14,52 +14,98 @@ Database::Database(string _name) {
 	name = _name;
 }
 
-void Database::createTableClass(string TableClassName, int _colNum, vector<string> _colName, vector<string> _colType) {
-	TableClass newTableClass(_colNum, _colName, _colType);
-	TableClasss.push_back(newTableClass);
-	nameOfTableClasss.push_back(TableClassName);
-	numOfTableClass++;
-}
-
-TableClass Database::getTableClass(int _TableClassIndex) {
-	return TableClasss[_TableClassIndex];
-}
-
-TableClass Database::getTableClass(string _name)
-{
-	for (int i = 0; i < numOfTableClass; i++) {
-		if (nameOfTableClasss[i] == _name)
-			return TableClasss[i];
+void Database::readTables() {
+	ifstream table_info_input;
+	string path = "./data/" + name + "/table_info.txt";
+	table_info_input.open(path);
+	string str;
+	while (table_info_input >> str) {
+		string table_name = str;
+		int _colNum;
+		vector<string> _colName, _colType;
+		table_info_input >> _colNum;
+		for (int i = 0; i < _colNum; i++) {
+			table_info_input >> str;
+			_colName.push_back(str);
+		}
+		for (int i = 0; i < _colNum; i++) {
+			table_info_input >> str;
+			_colType.push_back(str);
+		}
+		TableClass newTable(_colNum, _colName, _colType);
+		Tables.push_back(newTable);
+		nameOfTables.push_back(table_name);
+		numOfTable++;
 	}
-	return TableClasss[0];
+	table_info_input.close();
 }
 
-string Database::getNameOfTableClass(int _TableClassIndex) {
-	return nameOfTableClasss[_TableClassIndex];
+void Database::saveTables() {
+	ofstream table_info_output;
+	string path = "./data/" + name + "/table_info.txt";
+	table_info_output.open(path);
+
+	for (int i = 0; i < numOfTable; i++) {
+		table_info_output << nameOfTables[i] << endl;
+		for (auto iter = Tables[i].colName.begin(); iter != Tables[i].colName.end(); iter++)
+			table_info_output << *iter << " ";
+		table_info_output << endl;
+		for (auto iter = Tables[i].colType.begin(); iter != Tables[i].colType.end(); iter++)
+			table_info_output << *iter << " ";
+		table_info_output << endl;
+	}
+
+	table_info_output.close();
 }
 
-void Database::deleteTableClass(string _name)
+void Database::createTable(string TableClassName, int _colNum, vector<string> _colName, vector<string> _colType) {
+	TableClass newTable(_colNum, _colName, _colType);
+	Tables.push_back(newTable);
+	nameOfTables.push_back(TableClassName);
+	numOfTable++;
+
+	// 新建文件夹
+	string folderPath = ".\\data\\" + name + "\\" + TableClassName;
+
+	string command;
+	command = "mkdir " + folderPath;
+	system(command.c_str());
+}
+
+TableClass Database::getTable(int _TableClassIndex) {
+	return Tables[_TableClassIndex];
+}
+
+TableClass Database::getTable(string _name)
+{
+	for (int i = 0; i < numOfTable; i++) {
+		if (nameOfTables[i] == _name)
+			return Tables[i];
+	}
+	return Tables[0];
+}
+
+string Database::getNameOfTable(int _TableClassIndex) {
+	return nameOfTables[_TableClassIndex];
+}
+
+void Database::deleteTable(string _name)
 {
 	int i;
-	for (i = 0; i < numOfTableClass; i++) {
-		if (nameOfTableClasss[i] == _name)
+	for (i = 0; i < numOfTable; i++) {
+		if (nameOfTables[i] == _name)
 			break;
 	}
-	deleteTableClass(i);
+	deleteTable(i);
 }
 
-void Database::deleteTableClass(int _TableClassIndex)
+void Database::deleteTable(int _TableIndex)
 {
-	vector<TableClass> newTableClasss;
-	newTableClasss.assign(TableClasss.begin(), TableClasss.begin()+_TableClassIndex);
-	for (int i = _TableClassIndex + 1; i < numOfTableClass; i++) {
-		newTableClasss.push_back(TableClasss[i]);
+	vector<TableClass> newTables;
+	newTables.assign(Tables.begin(), Tables.begin()+_TableIndex);
+	for (int i = _TableIndex + 1; i < numOfTable; i++) {
+		newTables.push_back(Tables[i]);
 	}
-	TableClasss = newTableClasss;
-	numOfTableClass--;
-}
-
-int Database::getNumOfTableClass()
-{
-	return numOfTableClass;
+	Tables = newTables;
+	numOfTable--;
 }

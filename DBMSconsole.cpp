@@ -19,7 +19,7 @@ int main()
 	// 测试简单的增删改查
 	//changeTableContent();
 
-	Manager& manager = Manager::get_instance();
+	/*Manager& manager = Manager::get_instance();
 	manager.readDatabase();
 	bool b = manager.openDatabase("db3");
 	cout << "open: " << b << "  " << manager.database_on.name << endl;
@@ -27,7 +27,25 @@ int main()
 	bool b2 = manager.openDatabase("db5");
 	cout << "open: " << b2 << "  " << manager.database_on.name << endl;
 	manager.deleteDatabase("db3");
-	manager.saveDatabase();
+	manager.saveDatabase();*/
+
+	Manager& manager = Manager::get_instance();
+	manager.readDatabase();
+	manager.openDatabase("db1");
+	manager.database_on.readTables();
+	cout << "当前数据库表数：" << manager.database_on.numOfTable << endl;
+	cout << "Table: " << manager.database_on.getNameOfTable(0) << endl;
+	manager.database_on.getTable(0).printTableClass();
+	cout << "Table: " << manager.database_on.getNameOfTable(1) << endl;
+	manager.database_on.getTable(1).printTableClass();
+
+	vector<string> _colName{ "ID","GRADE" };
+	vector<string> _colType{ "NUMBER","FLOAT" };
+	manager.database_on.createTable("course", 2, _colName, _colType);
+	cout << "Table: " << manager.database_on.getNameOfTable(2) << endl;
+	manager.database_on.getTable(2).printTableClass();
+	
+	manager.database_on.saveTables();
 }
 
 void changeTableContent() {
@@ -65,8 +83,8 @@ void createTableClassByInput() {
 	}
 	cout << endl;
 
-	database.createTableClass("Student", colNum, colName, colType);
-	tableClass = database.getTableClass("Student");
+	database.createTable("Student", colNum, colName, colType);
+	tableClass = database.getTable("Student");
 
 	tableClass.printTableClass();
 
