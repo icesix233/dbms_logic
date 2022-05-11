@@ -2,6 +2,7 @@
 #include <vector>
 #include <iostream>
 #include <iterator>
+#include <fstream>
 #include <string>
 using namespace std;
 
@@ -9,10 +10,32 @@ TableClass::TableClass() {
 	colNum = 0;
 }
 
-TableClass::TableClass(int _colNum, vector<string> _colName, vector<string> _colType) {
+TableClass::TableClass(string _name, string _nameOfDatabase, int _colNum, vector<string> _colName, vector<string> _colType) {
+	name = _name;
+	nameOfDatabase = _nameOfDatabase;
 	colNum = _colNum;
 	colName.assign(_colName.begin(), _colName.end());
 	colType.assign(_colType.begin(), _colType.end());
+}
+
+void TableClass::readData()
+{
+	ifstream table_input;
+	string path = "./data/" + nameOfDatabase + "/" + name + "/data.txt";
+	table_input.open(path);
+
+	int _rowNum;
+	table_input >> _rowNum;
+	for (int i = 0; i < _rowNum; i++) {
+		string str;
+		vector<string> row;
+		for (int j = 0; j < colNum; j++) {
+			table_input >> str;
+			row.push_back(str);
+		}
+		cols.push_back(row);
+		rowNum++;
+	}
 }
 
 void TableClass::insertRow(vector<string> _row) {
@@ -51,7 +74,7 @@ void TableClass::changePriKey(int _newPriIndex) {
 	priIndex = _newPriIndex;
 }
 
-void TableClass::printTableClass() {
+void TableClass::printTable() {
 	vector<string>::iterator it;
 
 	cout << endl;

@@ -11,6 +11,9 @@ TableClass tableClass;
 
 void createTableClassByInput();
 void changeTableContent();
+void testmanager();
+void testdatabase();
+void testtable();
 
 int main()
 {
@@ -19,7 +22,18 @@ int main()
 	// 测试简单的增删改查
 	//changeTableContent();
 
-	/*Manager& manager = Manager::get_instance();
+	/* manger测试 */
+	//testmanager();
+
+	/* database测试 */
+	//testdatabase();
+
+	/* table测试 */
+	testtable();
+}
+
+void testmanager() {
+	Manager& manager = Manager::get_instance();
 	manager.readDatabase();
 	bool b = manager.openDatabase("db3");
 	cout << "open: " << b << "  " << manager.database_on.name << endl;
@@ -27,33 +41,46 @@ int main()
 	bool b2 = manager.openDatabase("db5");
 	cout << "open: " << b2 << "  " << manager.database_on.name << endl;
 	manager.deleteDatabase("db3");
-	manager.saveDatabase();*/
+	manager.saveDatabase();
+}
 
+void testdatabase() {
 	Manager& manager = Manager::get_instance();
 	manager.readDatabase();
 	manager.openDatabase("db1");
 	manager.database_on.readTables();
 	cout << "当前数据库表数：" << manager.database_on.numOfTable << endl;
 	cout << "Table: " << manager.database_on.getNameOfTable(0) << endl;
-	manager.database_on.getTable(0).printTableClass();
+	manager.database_on.getTable(0).printTable();
 	cout << "Table: " << manager.database_on.getNameOfTable(1) << endl;
-	manager.database_on.getTable(1).printTableClass();
+	manager.database_on.getTable(1).printTable();
 
 	vector<string> _colName{ "ID","GRADE" };
 	vector<string> _colType{ "NUMBER","FLOAT" };
 	manager.database_on.createTable("course", 2, _colName, _colType);
 	cout << "Table: " << manager.database_on.getNameOfTable(2) << endl;
-	manager.database_on.getTable(2).printTableClass();
+	manager.database_on.getTable(2).printTable();
 	manager.database_on.deleteTable("teacher");
-	
+
 	manager.database_on.saveTables();
+}
+
+void testtable() {
+	Manager& manager = Manager::get_instance();
+	manager.readDatabase();
+	manager.openDatabase("db1");
+	manager.database_on.readTables();
+	TableClass studentTable = manager.database_on.getTable("student");
+	studentTable.printTable();
+	studentTable.readData();
+	studentTable.printTable();
 }
 
 void changeTableContent() {
 	cout << " 修改第1行内容为 999,John,8.8 " << endl;
 	vector<string> newrow = { "999","John","8.8" };
 	tableClass.changeRow(1, newrow);
-	tableClass.printTableClass();
+	tableClass.printTable();
 
 	cout << " 获取第1行第0列的数据 " << endl;
 	cout << tableClass.getRow(1)[0] << endl;
@@ -87,7 +114,7 @@ void createTableClassByInput() {
 	database.createTable("Student", colNum, colName, colType);
 	tableClass = database.getTable("Student");
 
-	tableClass.printTableClass();
+	tableClass.printTable();
 
 	// 测试插入表内容
 	int insertRowCount;
@@ -103,5 +130,5 @@ void createTableClassByInput() {
 		}
 		tableClass.insertRow(thisRow);
 	}
-	tableClass.printTableClass();
+	tableClass.printTable();
 }

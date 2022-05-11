@@ -7,6 +7,8 @@ class TableClass
 {
 
 public:
+	string name; // 表的名字
+	string nameOfDatabase;  // 所处数据库的名字（用于文件路径）
 	int colNum, rowNum = 0;   // colNum 列数  rowNum 行数
 	int priIndex = 0; // 主键的列序号，默认主键为第一列
 	vector<string> colName;   // 每一列的名字（ID，姓名等）
@@ -16,7 +18,11 @@ public:
 	// 默认构造函数，一般不用
 	TableClass();
 	// 构造函数，创建表，参数依次为 列数，各列名字，各列数据类型
-	TableClass(int _colNum, vector<string> _colName, vector<string> _colType);
+	TableClass(string _name, string _nameOfDatabase, int _colNum, vector<string> _colName, vector<string> _colType);
+
+	// 从文件中读取表的信息
+	void readData();
+
 	// 插入一行
 	void insertRow(vector<string> _row);
 	// 修改某一行内容 (参数rowindex从0开始)
@@ -28,7 +34,7 @@ public:
 	// 获取第_colIndex列内容为_data的那一行的行号
 	int getRowIndex(int _colIndex, string _data);
 	// 打印表的内容
-	void printTableClass();
+	void printTable();
 
 	// 获取主键信息
 	string getPriKey();

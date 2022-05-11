@@ -32,7 +32,7 @@ void Database::readTables() {
 			table_info_input >> str;
 			_colType.push_back(str);
 		}
-		TableClass newTable(_colNum, _colName, _colType);
+		TableClass newTable(table_name, name, _colNum, _colName, _colType);
 		Tables.push_back(newTable);
 		nameOfTables.push_back(table_name);
 		numOfTable++;
@@ -47,6 +47,7 @@ void Database::saveTables() {
 
 	for (int i = 0; i < numOfTable; i++) {
 		table_info_output << nameOfTables[i] << endl;
+		table_info_output << Tables[i].colNum << endl;
 		for (auto iter = Tables[i].colName.begin(); iter != Tables[i].colName.end(); iter++)
 			table_info_output << *iter << " ";
 		table_info_output << endl;
@@ -59,7 +60,7 @@ void Database::saveTables() {
 }
 
 void Database::createTable(string TableClassName, int _colNum, vector<string> _colName, vector<string> _colType) {
-	TableClass newTable(_colNum, _colName, _colType);
+	TableClass newTable(TableClassName, name, _colNum, _colName, _colType);
 	Tables.push_back(newTable);
 	nameOfTables.push_back(TableClassName);
 	numOfTable++;
