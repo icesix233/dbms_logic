@@ -3,6 +3,6 @@ student
 ID NAME CLASS GRADE 
 number string string float 
 teacher
-2
-ID GRADE 
-NUMBER FLOAT 
+3
+ID NAME DEPARTMENT 
+number string string 

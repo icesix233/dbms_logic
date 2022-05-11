@@ -61,18 +61,24 @@ bool Manager::openDatabase(string _name) {
     return found;
 }
 
-void Manager::deleteDatabase(string _name) {
+bool Manager::deleteDatabase(string _name) {
     if (database_on.name == _name) {
         Database database("null");
         database_on = database;
     }
 
+    bool found = false;
+
     auto iterDel = databases.begin();
     for (auto iter = databases.begin(); iter != databases.end(); iter++) {
         if (*iter == _name) {
             iterDel = iter;
+            found = true;
+            break;
         }
     }
+    if (!found) return false;
+
     databases.erase(iterDel);
 
     // É¾³ıÎÄ¼ş¼Ğ
@@ -81,4 +87,6 @@ void Manager::deleteDatabase(string _name) {
     string command;
     command = "rmdir " + folderPath;
     system(command.c_str());
+
+    return true;
 }

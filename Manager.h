@@ -25,7 +25,7 @@ public:
     // 打开数据库（文件寻找和database_on的赋值），返回true成功，false找不到
     bool openDatabase(string _name);
     // 删除数据库（文件中同样删除）
-    void deleteDatabase(string _name);
+    bool deleteDatabase(string _name);
 
     ~Manager();
     Manager(const Manager&) = delete;

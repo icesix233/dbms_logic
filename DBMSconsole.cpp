@@ -23,13 +23,13 @@ int main()
 	//changeTableContent();
 
 	/* manger测试 */
-	//testmanager();
+	testmanager();
 
 	/* database测试 */
 	//testdatabase();
 
 	/* table测试 */
-	testtable();
+	//testtable();
 }
 
 void testmanager() {
