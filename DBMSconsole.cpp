@@ -23,13 +23,13 @@ int main()
 	//changeTableContent();
 
 	/* manger测试 */
-	testmanager();
+	//testmanager();
 
 	/* database测试 */
 	//testdatabase();
 
 	/* table测试 */
-	//testtable();
+	testtable();
 }
 
 void testmanager() {
@@ -72,8 +72,15 @@ void testtable() {
 	manager.database_on.readTables();
 	TableClass studentTable = manager.database_on.getTable("student");
 	studentTable.printTable();
-	studentTable.readData();
-	studentTable.printTable();
+	studentTable.readData(); // 读取文件内容
+	studentTable.printTable();  // 打印现在的表
+	vector<string> newrow1 = { "001", "Smith", "RJ2005", "3.5" };
+	studentTable.insertRow(newrow1);  // 插入新的一行
+	vector<string> newrow2 = { "002", "Dog", "RJ2222", "3.9" };
+	studentTable.changeRow(1,newrow2); // 修改第二行（序号为1）的内容
+	studentTable.changeRow(0, 1, "NewName");  // 修改第一行，第二列（名字）的内容为NewName
+	studentTable.printTable(); // 打印表
+	studentTable.saveData(); // 保存文件内容
 }
 
 void changeTableContent() {

@@ -22,6 +22,8 @@ public:
 
 	// 从文件中读取表的信息
 	void readData();
+	// 向文件中保存表的信息
+	void saveData();
 
 	// 插入一行
 	void insertRow(vector<string> _row);

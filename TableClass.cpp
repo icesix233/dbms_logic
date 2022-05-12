@@ -36,6 +36,24 @@ void TableClass::readData()
 		cols.push_back(row);
 		rowNum++;
 	}
+
+	table_input.close();
+}
+
+void TableClass::saveData() {
+	ofstream table_output;
+	string path = "./data/" + nameOfDatabase + "/" + name + "/data.txt";
+	table_output.open(path);
+
+	table_output << rowNum << endl;
+	for (int i = 0; i < rowNum; i++) {
+		for (auto iter = cols[i].begin(); iter != cols[i].end(); iter++) {
+			table_output << *iter << " ";
+		}
+		table_output << endl;
+	}
+
+	table_output.close();
 }
 
 void TableClass::insertRow(vector<string> _row) {
