@@ -78,15 +78,18 @@ void testtable() {
 	// 删除字段，同时删除这一列的所有数据
 	//studentTable.deleteField(1);
 
-	// 字段操作
-	studentTable.changeField(1, "StudentName");  // 将第二列（Name）改为StudentName
-	// 在第二列（Name）后增加一列性别。注意增加后所有这列的数据都为空字符串。
-	studentTable.addField(1, "GENDER", "string");
-	// 修改第二行第三列（性别)为MALE
-	studentTable.changeRow(1, 2, "Male");
-	// 删除第二行
-	studentTable.deleteRow(0);
-	studentTable.printTable();
+	//// 字段操作
+	//studentTable.changeField(1, "StudentName");  // 将第二列（Name）改为StudentName
+	//// 在第二列（Name）后增加一列性别。注意增加后所有这列的数据都为空字符串。
+	//studentTable.addField(1, "GENDER", "string");
+	//// 修改第二行第三列（性别)为MALE
+	//studentTable.changeRow(1, 2, "Male");
+	//// 删除第二行
+	//studentTable.deleteRow(0);
+	//studentTable.printTable();
+
+	// where关键字
+	
 
 	studentTable.saveData(); // 保存文件内容
 }

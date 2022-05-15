@@ -104,6 +104,15 @@ void TableClass::changePriKey(int _newPriIndex) {
 	priIndex = _newPriIndex;
 }
 
+int TableClass::getIndexFromFieldName(string _name)
+{
+	int i = 0;
+	for (; i < colNum; i++)
+		if (colName[i] == _name)
+			return i;
+	return i;
+}
+
 void TableClass::changeField(int fieldIndex, string newField)
 {
 	colName[fieldIndex] = newField;
@@ -126,17 +135,70 @@ void TableClass::addField(int _index, string _field, string _colType)
 	saveDataOfDatabase();
 }
 
-void TableClass::deleteField(int _index)
+void TableClass::deleteField(int fieldIndex)
 {
-	colName.erase(colName.begin() + _index);
-	colType.erase(colType.begin() + _index);
+	colName.erase(colName.begin() + fieldIndex);
+	colType.erase(colType.begin() + fieldIndex);
 	for (int i = 0; i < rowNum; i++) {
-		cols[i].erase(cols[i].begin() + _index);
+		cols[i].erase(cols[i].begin() + fieldIndex);
 	}
 
 	colNum--;
 
 	saveDataOfDatabase();
+}
+
+vector<string> TableClass::getAllFromField(int fieldIndex)
+{
+	vector<string> data;
+	for (int i = 0; i < rowNum; i++) {
+		data.push_back(cols[i][fieldIndex]);
+	}
+	return data;
+}
+
+vector<string> TableClass::getFieldOpr(int fieldIndex, string opr, int number, int IndexOfGetField)
+{
+	vector<string> result;
+
+	if (opr == "=") {
+		for (int i = 0; i < rowNum; i++) {
+			if (stoi(cols[i][fieldIndex]) == number)
+				result.push_back(cols[i][IndexOfGetField]);
+		}
+	}
+	else if (opr == "!=") {
+		for (int i = 0; i < rowNum; i++) {
+			if (stoi(cols[i][fieldIndex]) != number)
+				result.push_back(cols[i][IndexOfGetField]);
+		}
+	}
+	else if (opr == ">") {
+		for (int i = 0; i < rowNum; i++) {
+			if (stoi(cols[i][fieldIndex]) > number)
+				result.push_back(cols[i][IndexOfGetField]);
+		}
+	}
+	else if (opr == ">=") {
+		for (int i = 0; i < rowNum; i++) {
+			if (stoi(cols[i][fieldIndex]) >= number)
+				result.push_back(cols[i][IndexOfGetField]);
+		}
+	}
+	else if (opr == "<") {
+		for (int i = 0; i < rowNum; i++) {
+			if (stoi(cols[i][fieldIndex]) < number)
+				result.push_back(cols[i][IndexOfGetField]);
+		}
+	}
+	else if (opr == "<=") {
+		for (int i = 0; i < rowNum; i++) {
+			if (stoi(cols[i][fieldIndex]) <= number)
+				result.push_back(cols[i][IndexOfGetField]);
+		}
+	}
+
+	return result;
 }
 
 void TableClass::saveDataOfDatabase()

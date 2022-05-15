@@ -47,13 +47,25 @@ public:
 	// 更改主键（参数为列序号）
 	void changePriKey(int _newPriIndex);
 
+	// 获取名为_name的字段的index序号
+	int getIndexFromFieldName(string _name);
 	// 修改字段（fieldIndex是从0开始的）
 	void changeField(int fieldIndex, string newField);
 	// 增加字段，即增加列，_field为字段名，_colType为数据类型。增加位置：_index列之后
 	// 增加字段后，新的字段列数据均为"null"字符串
 	void addField(int _index, string _field, string _colType);
 	// 删除字段，删除_index列的字段，此列数据也全部删除
-	void deleteField(int _index);
+	void deleteField(int fieldIndex);
+
+	// 获得某一字段的所有数据
+	vector<string> getAllFromField(int fieldIndex);
+
+	/* 应对where关键字的方法 */
+	
+	// 获取fieldIndex字段下，满足 DATA opreator number为true的所有记录的getField字段的值
+	// 例：获取所有年龄大于20的学生名字，参数为 1(age), >, 20, 0(name)，返回值为 {Ben,Alice}
+	// operator为 >, <, =, >=, <=, != 其中的一个
+	vector<string> getFieldOpr(int fieldIndex, string opreator, int number, int IndexOfGetField);
 
 private:
 	vector<string>::iterator it;
