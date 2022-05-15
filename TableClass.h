@@ -35,6 +35,10 @@ public:
 	vector<string> getRow(int _rowIndex);
 	// 获取第_colIndex列内容为_data的那一行的行号
 	int getRowIndex(int _colIndex, string _data);
+	// 删除某一行
+	void deleteRow(int _rowIndex);
+	// 删除某一行的第i个数据（其实是把这个位置的字符串改为null）
+	void deleteRow(int _rowIndex, int _colIndex);
 	// 打印表的内容
 	void printTable();
 

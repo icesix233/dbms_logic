@@ -85,6 +85,17 @@ int TableClass::getRowIndex(int _colIndex, string _data) {
 	return 0;
 }
 
+void TableClass::deleteRow(int _rowIndex)
+{
+	rowNum--;
+	cols.erase(cols.begin() + _rowIndex);
+}
+
+void TableClass::deleteRow(int _rowIndex, int _colIndex)
+{
+	changeRow(_rowIndex, _colIndex, "null");
+}
+
 string TableClass::getPriKey() {
 	return colName[priIndex];
 }
