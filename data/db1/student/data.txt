@@ -1,4 +1,4 @@
 3
-189 Ben RJ2001 2.9
-897 Alice RJ2003 2.8
-276 Kitty RJ2002 2.4
+189 Ben null RJ2001 2.9 
+897 Alice Male RJ2003 2.8 
+276 Kitty null RJ2002 2.4 

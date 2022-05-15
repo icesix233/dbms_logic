@@ -17,11 +17,6 @@ void testtable();
 
 int main()
 {
-	// 通过输入创建一个表并输入测试数据
-	//createTableClassByInput();
-	// 测试简单的增删改查
-	//changeTableContent();
-
 	/* manger测试 */
 	//testmanager();
 
@@ -71,15 +66,23 @@ void testtable() {
 	manager.openDatabase("db1");
 	manager.database_on.readTables();
 	TableClass studentTable = manager.database_on.getTable("student");
-	studentTable.printTable();
 	studentTable.readData(); // 读取文件内容
 	studentTable.printTable();  // 打印现在的表
-	vector<string> newrow1 = { "001", "Smith", "RJ2005", "3.5" };
-	studentTable.insertRow(newrow1);  // 插入新的一行
-	vector<string> newrow2 = { "002", "Dog", "RJ2222", "3.9" };
-	studentTable.changeRow(1,newrow2); // 修改第二行（序号为1）的内容
-	studentTable.changeRow(0, 1, "NewName");  // 修改第一行，第二列（名字）的内容为NewName
-	studentTable.printTable(); // 打印表
+	//vector<string> newrow1 = { "001", "Smith", "RJ2005", "3.5" };
+	//studentTable.insertRow(newrow1);  // 插入新的一行
+	//vector<string> newrow2 = { "002", "Dog", "RJ2222", "3.9" };
+	//studentTable.changeRow(1,newrow2); // 修改第二行（序号为1）的内容
+	//studentTable.changeRow(0, 1, "NewName");  // 修改第一行，第二列（名字）的内容为NewName
+	//studentTable.printTable(); // 打印表
+
+	// 字段操作
+	studentTable.changeField(1, "StudentName");  // 将第二列（Name）改为StudentName
+	// 在第二列（Name）后增加一列性别。注意增加后所有这列的数据都为空字符串。
+	studentTable.addField(1, "GENDER", "string");
+	// 修改第二行第三列（性别)为MALE
+	studentTable.changeRow(1, 2, "Male");
+	studentTable.printTable();
+
 	studentTable.saveData(); // 保存文件内容
 }
 

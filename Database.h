@@ -24,6 +24,9 @@ public:
 	// 保存表信息的修改到文件
 	void saveTables();
 
+	// 获取name表的序号
+	int getIndexOfTable(string _name);
+
 	// 创建名为TableName的表
 	void createTable(string TableName, int _colNum, vector<string> _colName, vector<string> _colType);
 	// 获取第_TableIndex个表的对象实例

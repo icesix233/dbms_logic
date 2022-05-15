@@ -59,6 +59,15 @@ void Database::saveTables() {
 	table_info_output.close();
 }
 
+int Database::getIndexOfTable(string _name)
+{
+	int i = 0;
+	for (i = 0; i < numOfTable; i++) {
+		if (nameOfTables[i] == _name) return i;
+	}
+	return i;
+}
+
 void Database::createTable(string TableClassName, int _colNum, vector<string> _colName, vector<string> _colType) {
 	TableClass newTable(TableClassName, name, _colNum, _colName, _colType);
 	Tables.push_back(newTable);

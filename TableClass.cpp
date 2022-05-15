@@ -4,6 +4,7 @@
 #include <iterator>
 #include <fstream>
 #include <string>
+#include "Manager.h"
 using namespace std;
 
 TableClass::TableClass() {
@@ -91,6 +92,52 @@ string TableClass::getPriKey() {
 void TableClass::changePriKey(int _newPriIndex) {
 	priIndex = _newPriIndex;
 }
+
+void TableClass::changeField(int fieldIndex, string newField)
+{
+	colName[fieldIndex] = newField;
+	saveDataOfDatabase();
+}
+
+void TableClass::addField(int _index, string _field, string _colType)
+{
+	_index++;
+	
+	colName.insert(colName.begin() + _index, _field);
+	colType.insert(colType.begin() + _index, _colType);
+
+	for (int i = 0; i < rowNum; i++) {
+		cols[i].insert(cols[i].begin() + _index, "null");
+	}
+
+	colNum++;
+
+	saveDataOfDatabase();
+}
+
+void TableClass::deleteField(int _index)
+{
+	colName.erase(colName.begin() + _index);
+	colType.erase(colType.begin() + _index);
+	for (int i = 0; i < rowNum; i++) {
+		cols[i].erase(cols[i].begin() + _index);
+	}
+
+	colNum--;
+
+	saveDataOfDatabase();
+}
+
+void TableClass::saveDataOfDatabase()
+{
+	Manager& manager = Manager::get_instance();
+
+	int index = manager.database_on.getIndexOfTable(name);
+	manager.database_on.Tables[index] = *this;
+
+	manager.database_on.saveTables();
+}
+
 
 void TableClass::printTable() {
 	vector<string>::iterator it;

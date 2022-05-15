@@ -43,7 +43,18 @@ public:
 	// 更改主键（参数为列序号）
 	void changePriKey(int _newPriIndex);
 
+	// 修改字段（fieldIndex是从0开始的）
+	void changeField(int fieldIndex, string newField);
+	// 增加字段，即增加列，_field为字段名，_colType为数据类型。增加位置：_index列之后
+	// 增加字段后，新的字段列数据均为"null"字符串
+	void addField(int _index, string _field, string _colType);
+	// 删除字段，删除_index列的字段，此列数据也全部删除
+	void deleteField(int _index);
+
 private:
 	vector<string>::iterator it;
+	// 从数据库处调用保存，当字段修改后内部方法调用
+	// 因为表类无法保存字段。不要主动调用此方法
+	void saveDataOfDatabase();
 };
 

@@ -1,7 +1,7 @@
 student
-4
-ID NAME CLASS GRADE 
-number string string float 
+5
+ID StudentName GENDER CLASS GRADE 
+number string string string float 
 teacher
 3
 ID NAME DEPARTMENT 
