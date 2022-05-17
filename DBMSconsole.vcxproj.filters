@@ -27,6 +27,15 @@
     <ClCompile Include="Manager.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="analyze.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="other.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="jsoncpp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TableClass.h">
@@ -36,6 +45,18 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Manager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="analyze.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="other.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="json.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="json-forwards.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
