@@ -39,6 +39,9 @@ public:
 	// 删除名字为_name的表
 	void deleteTable(string _name);
 
+	//是否存在名为tableName的表
+	bool is_in(string tableName);
+
 private:
 	// 删除第_TableIndex个表
 	void deleteTable(int _TableClassIndex);

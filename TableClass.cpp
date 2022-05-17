@@ -148,6 +148,13 @@ void TableClass::deleteField(int fieldIndex)
 	saveDataOfDatabase();
 }
 
+void TableClass::changeTypeOfField(string fieldName, string newtype)
+{
+	int _index = getIndexFromFieldName(fieldName);
+	colType[_index] = newtype;
+	saveDataOfDatabase();
+}
+
 vector<string> TableClass::getAllFromField(int fieldIndex)
 {
 	vector<string> data;

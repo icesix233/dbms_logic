@@ -56,6 +56,8 @@ public:
 	void addField(int _index, string _field, string _colType);
 	// 删除字段，删除_index列的字段，此列数据也全部删除
 	void deleteField(int fieldIndex);
+	// 更改fieldName字段的数据类型
+	void changeTypeOfField(string fieldName, string newtype);
 
 	// 获得某一字段的所有数据
 	vector<string> getAllFromField(int fieldIndex);

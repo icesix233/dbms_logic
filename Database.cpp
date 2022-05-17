@@ -109,6 +109,16 @@ void Database::deleteTable(string _name)
 	deleteTable(i);
 }
 
+bool Database::is_in(string tableName)
+{
+	for (int i = 0; i < numOfTable; i++)
+	{
+		if (nameOfTables[i] == tableName)
+			return true;
+	}
+	return false;
+}
+
 void Database::deleteTable(int _TableIndex)
 {
 	string nameDel = nameOfTables[_TableIndex];
