@@ -1,0 +1,26 @@
+{
+	"database" : "db1",
+	"num" : 3,
+	"records" : 
+	[
+		{
+			"CLASS" : "RJ2001",
+			"GRADE" : "2.9",
+			"ID" : "189",
+			"NAME" : "Ben"
+		},
+		{
+			"CLASS" : "RJ2003",
+			"GRADE" : "2.8",
+			"ID" : "897",
+			"NAME" : "Alice"
+		},
+		{
+			"CLASS" : "RJ2002",
+			"GRADE" : "2.4",
+			"ID" : "276",
+			"NAME" : "Kitty"
+		}
+	],
+	"table" : "student"
+}

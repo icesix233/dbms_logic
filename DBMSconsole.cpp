@@ -4,6 +4,9 @@
 #include "TableClass.h"
 #include "Database.h"
 #include "Manager.h"
+#include "analyze.h"
+#include "other.h"
+#include "json.h"
 using namespace std;
 
 Database database;
@@ -14,6 +17,7 @@ void changeTableContent();
 void testmanager();
 void testdatabase();
 void testtable();
+void testlog();
 
 int main()
 {
@@ -25,6 +29,12 @@ int main()
 
 	/* table测试 */
 	testtable();
+	
+	/* sql命令测试 */
+	//testsql();
+
+	/* json file测试 */
+	//testlog();
 }
 
 void testmanager() {
@@ -68,29 +78,28 @@ void testtable() {
 	TableClass studentTable = manager.database_on.getTable("student");
 	studentTable.readData(); // 读取文件内容
 	studentTable.printTable();  // 打印现在的表
-	//vector<string> newrow1 = { "001", "Smith", "RJ2005", "3.5" };
-	//studentTable.insertRow(newrow1);  // 插入新的一行
-	//vector<string> newrow2 = { "002", "Dog", "RJ2222", "3.9" };
-	//studentTable.changeRow(1,newrow2); // 修改第二行（序号为1）的内容
-	//studentTable.changeRow(0, 1, "NewName");  // 修改第一行，第二列（名字）的内容为NewName
-	//studentTable.printTable(); // 打印表
+	vector<string> newrow1 = { "001", "Smith", "RJ2005", "3.5" };
+	studentTable.insertRow(newrow1);  // 插入新的一行
+	vector<string> newrow2 = { "002", "Dog", "RJ2222", "3.9" };
+	studentTable.changeRow(1,newrow2); // 修改第二行（序号为1）的内容
+	studentTable.changeRow(0, 1, "NewName");  // 修改第一行，第二列（名字）的内容为NewName
+	studentTable.printTable(); // 打印表
 
 	// 删除字段，同时删除这一列的所有数据
 	//studentTable.deleteField(1);
 
-	// 字段操作
-	studentTable.changeField(1, "StudentName");  // 将第二列（Name）改为StudentName
-	// 在第二列（Name）后增加一列性别。注意增加后所有这列的数据都为空字符串。
-	studentTable.addField(1, "GENDER", "string");
-	// 修改第二行第三列（性别)为MALE
-	studentTable.changeRow(1, 2, "Male");
-	// 删除第二行
-	studentTable.deleteRow(0);
-	studentTable.printTable();
+	//// 字段操作
+	//studentTable.changeField(1, "StudentName");  // 将第二列（Name）改为StudentName
+	//// 在第二列（Name）后增加一列性别。注意增加后所有这列的数据都为空字符串。
+	//studentTable.addField(1, "GENDER", "string");
+	//// 修改第二行第三列（性别)为MALE
+	//studentTable.changeRow(1, 2, "Male");
+	//// 删除第二行
+	//studentTable.deleteRow(0);
+	//studentTable.printTable();
 
 	// where关键字
 	
-
 	studentTable.saveData(); // 保存文件内容
 }
 
@@ -149,4 +158,30 @@ void createTableClassByInput() {
 		tableClass.insertRow(thisRow);
 	}
 	tableClass.printTable();
+}
+
+void testsql() {
+	
+}
+
+void testlog() {
+	Json::Value data;
+	Json::Value record1;
+	record1["ID"] = "190";
+	record1["name"] = "xiaoming";
+	record1["grade"] = "3.2";
+	Json::Value record2;
+	record2["ID"] = "800";
+	record2["name"] = "daming";
+	record2["grade"] = "3.5";
+	data[0] = record1;
+	data[1] = record2;
+
+	string datanum = "2";
+	Json::Value log1;
+	log1["datanum"] = datanum;
+	log1["data"] = data;
+	//writeJsonFile("./testjson/test.json", log1);
+
+	cout << std::stoi(log1["datanum"].asString()) << endl;
 }

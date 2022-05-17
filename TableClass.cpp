@@ -5,6 +5,8 @@
 #include <fstream>
 #include <string>
 #include "Manager.h"
+#include "json.h"
+#include "other.h"
 using namespace std;
 
 TableClass::TableClass() {
@@ -19,6 +21,8 @@ TableClass::TableClass(string _name, string _nameOfDatabase, int _colNum, vector
 	colType.assign(_colType.begin(), _colType.end());
 }
 
+/* TXT版本的文件读取 */
+/*
 void TableClass::readData()
 {
 	ifstream table_input;
@@ -40,7 +44,28 @@ void TableClass::readData()
 
 	table_input.close();
 }
+*/
 
+void TableClass::readData()
+{
+	string path = "./data/" + nameOfDatabase + "/" + name + "/data.json";
+	Json::Value root = readJsonFile(path);
+
+	cols.clear();
+	rowNum = std::stoi(root["num"].asString());
+	for (int i = 0; i < rowNum; i++) {
+		string str;
+		vector<string> row;
+		for (int j = 0; j < colNum; j++) {
+			str = root["records"][i][colName[j]].asString();
+			row.push_back(str);
+		}
+		cols.push_back(row);
+	}
+}
+
+/* TXT版本的文件保存 */
+/*
 void TableClass::saveData() {
 	ofstream table_output;
 	string path = "./data/" + nameOfDatabase + "/" + name + "/data.txt";
@@ -55,6 +80,28 @@ void TableClass::saveData() {
 	}
 
 	table_output.close();
+}
+*/
+
+void TableClass::saveData()
+{
+	string path = "./data/" + nameOfDatabase + "/" + name + "/data.json";
+
+	Json::Value root;
+	root["database"] = nameOfDatabase;
+	root["table"] = name;
+	root["num"] = rowNum;
+	Json::Value records;
+	for (int i = 0; i < rowNum; i++) {
+		Json::Value thisrecord;
+		for (int j = 0; j < colNum; j++) {
+			thisrecord[colName[j]] = cols[i][j];
+		}
+		records[i] = thisrecord;
+	}
+	root["records"] = records;
+
+	writeJsonFile(path, root);
 }
 
 void TableClass::insertRow(vector<string> _row) {
