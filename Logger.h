@@ -9,7 +9,7 @@ class Logger
 public:
     string logPath = "./data/log.json";
 
-    void writeStringToLog(string user, string message);
+    void writeStringToLog(string user, string database, string oprtype, string message);
 
     ~Logger();
     Logger(const Logger&) = delete;

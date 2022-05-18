@@ -19,6 +19,7 @@ void testmanager();
 void testdatabase();
 void testtable();
 void testlog();
+void testlogger();
 
 int main()
 {
@@ -29,13 +30,16 @@ int main()
 	//testdatabase();
 
 	/* table测试 */
-	testtable();
+	//testtable();
 	
 	/* sql命令测试 */
 	//testsql();
 
 	/* json file测试 */
 	//testlog();
+
+	/* 日志测试 */
+	testlogger();
 }
 
 void testmanager() {
@@ -189,5 +193,5 @@ void testlog() {
 
 void testlogger() {
 	Logger& logger = Logger::get_instance();
-	logger.writeStringToLog("test log");
+	logger.writeStringToLog("sys", "db1", "testcreate", "test log");
 }

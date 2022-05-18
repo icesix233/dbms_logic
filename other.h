@@ -39,8 +39,12 @@ Json::Value readJsonFile(const string fileName);
 Json::Value readJsonFromString(const string mystr);
 //将json对象写入json文件
 void writeJsonFile(const string fileName, const Json::Value root);
+//将json对象以追加形式写入json文件
+void writeJsonFileOfAppend(const string fileName, const Json::Value root);
 //写文件
 void writeFileFromString(const string filename, const string body);
+//追加形式写文件
+void writeFileFromStringOfAppend(const string filename, const string body);
 #endif // OTHER_H
 
 //使用一个已经有数据的json对象

@@ -186,6 +186,14 @@ void writeFileFromString(const string filename, const string body)
     ofile.close();
 }
 
+void writeFileFromStringOfAppend(const string filename, const string body)
+{
+    ofstream ofile(filename, ios::app);
+    ofile << body;
+    ofile << ",\n";
+    ofile.close();
+}
+
 void writeJsonFile(const string filename, const Json::Value root) {
     //1.写json的工厂对象
     Json::StreamWriterBuilder writebuild;
@@ -197,3 +205,12 @@ void writeJsonFile(const string filename, const Json::Value root) {
 }
 
 
+void writeJsonFileOfAppend(const string filename, const Json::Value root) {
+    //1.写json的工厂对象
+    Json::StreamWriterBuilder writebuild;
+    writebuild["emitUTF8"] = true;//utf8支持,加这句,utf8的中文字符会编程\uxxx
+    //2.把json对象转变为字符串
+    string document = Json::writeString(writebuild, root);
+    //3.调用前面的写文件函数,写入文件
+    writeFileFromStringOfAppend(filename, document);
+}
