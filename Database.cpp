@@ -4,6 +4,7 @@
 #include <iterator>
 #include <string>
 #include "TableClass.h"
+#include "Logger.h"
 using namespace std;
 
 Database::Database() {
@@ -80,6 +81,11 @@ void Database::createTable(string TableClassName, int _colNum, vector<string> _c
 	string command;
 	command = "mkdir " + folderPath;
 	system(command.c_str());
+
+	// log
+	Logger& logger = Logger::get_instance();
+	string message = "CreateTable(NAME:" + TableClassName + ", COLNUM:" + to_string(_colNum) + ")";
+	logger.writeStringToLog("sys", name, "Create Table", message);
 }
 
 TableClass Database::getTable(int _TableClassIndex) {
@@ -107,6 +113,11 @@ void Database::deleteTable(string _name)
 			break;
 	}
 	deleteTable(i);
+
+	// log
+	Logger& logger = Logger::get_instance();
+	string message = "DeleteTable(NAME:" + _name + ")";
+	logger.writeStringToLog("sys", name, "Delete Table", message);
 }
 
 bool Database::is_in(string tableName)

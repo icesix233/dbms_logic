@@ -6,6 +6,25 @@
 #include <iostream>
 string DataBaseName = "db1";
 
+bool readsql(string input)
+{
+    bool flag;
+    vector<string> sublist;
+    string subsql;
+    while (input.find_first_of(";") <= input.size())
+    {
+        int i = input.find_first_of(";") + 1;
+        subsql = input.substr(0, i);
+        subsql = processInput(subsql);
+        sublist = interception(subsql);
+        flag = analyzeTo(sublist);
+        if (i >= input.size())
+            break;
+        else
+            input = input.substr(i);
+    }
+}
+
 bool analyzeTo(vector<string> inputList)
 {
     int flag = false;

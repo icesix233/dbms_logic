@@ -6,6 +6,7 @@ using namespace std;
 
 extern string DataBaseName;
 bool analyzeTo(vector<string> inputList);//分析调用
+bool readsql(string input); // 读取sql命令
 
 //设置数据库名(选择在哪个数据库中)  eg. 使用db1数据库-> use db1;
 bool useDB(string DBname);

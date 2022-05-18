@@ -166,7 +166,8 @@ void createTableClassByInput() {
 }
 
 void testsql() {
-	
+	string _test = "select name from student;";
+	bool success = analyzeTo(interception(processInput(_test)));
 }
 
 void testlog() {
