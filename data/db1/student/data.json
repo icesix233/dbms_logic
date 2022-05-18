@@ -1,25 +1,31 @@
 {
 	"database" : "db1",
-	"num" : 3,
+	"num" : 4,
 	"records" : 
 	[
 		{
 			"CLASS" : "RJ2001",
 			"GRADE" : "2.9",
 			"ID" : "189",
-			"NAME" : "Ben"
+			"NAME" : "NewName"
 		},
 		{
-			"CLASS" : "RJ2003",
-			"GRADE" : "2.8",
-			"ID" : "897",
-			"NAME" : "Alice"
+			"CLASS" : "RJ2222",
+			"GRADE" : "3.9",
+			"ID" : "002",
+			"NAME" : "Dog"
 		},
 		{
 			"CLASS" : "RJ2002",
 			"GRADE" : "2.4",
 			"ID" : "276",
 			"NAME" : "Kitty"
+		},
+		{
+			"CLASS" : "RJ2005",
+			"GRADE" : "3.5",
+			"ID" : "001",
+			"NAME" : "Smith"
 		}
 	],
 	"table" : "student"

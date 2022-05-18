@@ -30,7 +30,7 @@ int main()
 	//testdatabase();
 
 	/* table测试 */
-	//testtable();
+	testtable();
 	
 	/* sql命令测试 */
 	//testsql();
@@ -39,7 +39,7 @@ int main()
 	//testlog();
 
 	/* 日志测试 */
-	testlogger();
+	//testlogger();
 }
 
 void testmanager() {

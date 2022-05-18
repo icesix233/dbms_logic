@@ -7,6 +7,7 @@
 #include "Manager.h"
 #include "json.h"
 #include "other.h"
+#include "Logger.h"
 using namespace std;
 
 TableClass::TableClass() {
@@ -107,10 +108,24 @@ void TableClass::saveData()
 void TableClass::insertRow(vector<string> _row) {
 	cols.push_back(_row);
 	rowNum++;
+
+	// log
+	Logger& logger = Logger::get_instance();
+	string s_row = "";
+	for (auto iter = _row.begin(); iter != _row.end(); iter++) s_row += (" " + *iter);
+	string message = "InsertRow(TABLE NAME:" + name + "ROW:" + s_row + ")";
+	logger.writeStringToLog("sys", nameOfDatabase, "Insert Row", message);
 }
 
 void TableClass::changeRow(int _rowIndex, vector<string> _row) {
 	cols[_rowIndex].assign(_row.begin(), _row.end());
+
+	// log
+	Logger& logger = Logger::get_instance();
+	string s_row = "";
+	for (auto iter = _row.begin(); iter != _row.end(); iter++) s_row += (" " + *iter);
+	string message = "ChangeRow or InsertData(TABLE NAME:" + name + "ROW:" + s_row + ")";
+	logger.writeStringToLog("sys", nameOfDatabase, "Change Row or Insert Data", message);
 }
 
 void TableClass::changeRow(int _rowIndex, int _colIndex, string newdata) {
@@ -136,6 +151,11 @@ void TableClass::deleteRow(int _rowIndex)
 {
 	rowNum--;
 	cols.erase(cols.begin() + _rowIndex);
+
+	// log
+	Logger& logger = Logger::get_instance();
+	string message = "DeleteRow(TABLE NAME:" + name + ")";
+	logger.writeStringToLog("sys", nameOfDatabase, "Delete Row", message);
 }
 
 void TableClass::deleteRow(int _rowIndex, int _colIndex)
@@ -164,6 +184,11 @@ void TableClass::changeField(int fieldIndex, string newField)
 {
 	colName[fieldIndex] = newField;
 	saveDataOfDatabase();
+
+	// log
+	Logger& logger = Logger::get_instance();
+	string message = "ChangeField(TABLE NAME:" + name + ")";
+	logger.writeStringToLog("sys", nameOfDatabase, "Change Field", message);
 }
 
 void TableClass::addField(int _index, string _field, string _colType)
@@ -180,6 +205,11 @@ void TableClass::addField(int _index, string _field, string _colType)
 	colNum++;
 
 	saveDataOfDatabase();
+
+	// log
+	Logger& logger = Logger::get_instance();
+	string message = "AddField(TABLE NAME:" + name + ")";
+	logger.writeStringToLog("sys", nameOfDatabase, "Add Field", message);
 }
 
 void TableClass::deleteField(int fieldIndex)
@@ -193,6 +223,11 @@ void TableClass::deleteField(int fieldIndex)
 	colNum--;
 
 	saveDataOfDatabase();
+	
+	// log
+	Logger& logger = Logger::get_instance();
+	string message = "DeleteField(TABLE NAME:" + name + ")";
+	logger.writeStringToLog("sys", nameOfDatabase, "Delete Field", message);
 }
 
 void TableClass::changeTypeOfField(string fieldName, string newtype)
@@ -200,6 +235,11 @@ void TableClass::changeTypeOfField(string fieldName, string newtype)
 	int _index = getIndexFromFieldName(fieldName);
 	colType[_index] = newtype;
 	saveDataOfDatabase();
+
+	// log
+	Logger& logger = Logger::get_instance();
+	string message = "ChangeFieldType(TABLE NAME:" + name + ")";
+	logger.writeStringToLog("sys", nameOfDatabase, "Change Field Type", message);
 }
 
 vector<string> TableClass::getAllFromField(int fieldIndex)

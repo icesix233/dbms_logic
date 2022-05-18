@@ -23,6 +23,7 @@ bool readsql(string input)
         else
             input = input.substr(i);
     }
+    return true;
 }
 
 bool analyzeTo(vector<string> inputList)

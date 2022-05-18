@@ -2,6 +2,7 @@
 #include "Database.h"
 #include <iostream>
 #include <fstream>
+#include "Logger.h"
 using namespace std;
 
 Manager::~Manager() {
@@ -28,6 +29,11 @@ void Manager::createDatabase(string _name) {
     string command;
     command = "mkdir " + folderPath;
     system(command.c_str());
+
+    // log
+    Logger& logger = Logger::get_instance();
+    string message = "CreateDatabase(NAME:" + _name + ")";
+    logger.writeStringToLog("sys", "Manager", "Create Database", message);
 }
 
 void Manager::readDatabase()
@@ -87,6 +93,11 @@ bool Manager::deleteDatabase(string _name) {
     string command;
     command = "rmdir " + folderPath;
     system(command.c_str());
+
+    // log
+    Logger& logger = Logger::get_instance();
+    string message = "DeleteDatabase(NAME:" + _name + ")";
+    logger.writeStringToLog("sys", "Manager", "Delete Database", message);
 
     return true;
 }
