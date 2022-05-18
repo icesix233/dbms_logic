@@ -7,6 +7,7 @@
 #include "analyze.h"
 #include "other.h"
 #include "json.h"
+#include "Logger.h"
 using namespace std;
 
 Database database;
@@ -184,4 +185,9 @@ void testlog() {
 	//writeJsonFile("./testjson/test.json", log1);
 
 	cout << std::stoi(log1["datanum"].asString()) << endl;
+}
+
+void testlogger() {
+	Logger& logger = Logger::get_instance();
+	logger.writeStringToLog("test log");
 }
