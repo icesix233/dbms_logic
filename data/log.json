@@ -6,6 +6,17 @@
 		"opr type" : "Create Table"
 	},
 	"system" : "windows",
-	"time" : "2022-05-19 02:12:42.2301491",
+	"time" : "2022-05-19 14:57:37.4320954",
+	"user" : "sys"
+},
+{
+	"log" : 
+	{
+		"database" : "db1",
+		"message" : "InsertRow(TABLE NAME:courseROW: 587 jim 3.8)",
+		"opr type" : "Insert Row"
+	},
+	"system" : "windows",
+	"time" : "2022-05-19 14:58:29.9577941",
 	"user" : "sys"
 },

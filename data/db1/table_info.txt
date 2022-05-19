@@ -1,10 +1,10 @@
 student
 4
-ID NAME CLASS GRADE 
+id name class grade 
 number string string float 
 teacher
 3
-ID NAME DEPARTMENT 
+id name department 
 number string string 
 course
 3

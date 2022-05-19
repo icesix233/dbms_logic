@@ -1,0 +1,18 @@
+{
+	"database" : "db1",
+	"num" : 2,
+	"records" : 
+	[
+		{
+			"id": "0011",
+			"name": "ZhangSan",
+			"department": "Software"
+		},
+		{
+			"id": "0012",
+			"name": "LiSi",
+			"department": "Software"
+		}
+	],
+	"table" : "teacher"
+}

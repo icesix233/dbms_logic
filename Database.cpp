@@ -5,6 +5,8 @@
 #include <string>
 #include "TableClass.h"
 #include "Logger.h"
+#include "other.h"
+#include "json.h"
 using namespace std;
 
 Database::Database() {
@@ -81,6 +83,16 @@ void Database::createTable(string TableClassName, int _colNum, vector<string> _c
 	string command;
 	command = "mkdir " + folderPath;
 	system(command.c_str());
+	
+	// 写一个rowNum为0的json数据库文件
+	string path = "./data/" + name + "/" + TableClassName + "/data.json";
+	Json::Value root;
+	root["database"] = name;
+	root["table"] = TableClassName;
+	root["num"] = 0;
+	root["records"] = "";
+
+	writeJsonFile(path, root);
 
 	// log
 	Logger& logger = Logger::get_instance();

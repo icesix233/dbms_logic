@@ -4,22 +4,22 @@
 	"records" : 
 	[
 		{
-			"CLASS" : "RJ2001",
-			"GRADE" : "2.9",
-			"ID" : "189",
-			"NAME" : "Ben"
+			"class" : "RJ2001",
+			"grade" : "2.9",
+			"id" : "189",
+			"name" : "Ben"
 		},
 		{
-			"CLASS" : "RJ2003",
-			"GRADE" : "2.8",
-			"ID" : "897",
-			"NAME" : "Alice"
+			"class" : "RJ2003",
+			"grade" : "2.8",
+			"id" : "897",
+			"name" : "Alice"
 		},
 		{
-			"CLASS" : "RJ2002",
-			"GRADE" : "2.4",
-			"ID" : "276",
-			"NAME" : "Kitty"
+			"class" : "RJ2002",
+			"grade" : "2.4",
+			"id" : "276",
+			"name" : "Kitty"
 		}
 	],
 	"table" : "student"
