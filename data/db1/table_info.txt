@@ -6,3 +6,7 @@ teacher
 3
 ID NAME DEPARTMENT 
 number string string 
+course
+3
+id name grade 
+number string float 

@@ -53,15 +53,21 @@ void TableClass::readData()
 	Json::Value root = readJsonFile(path);
 
 	cols.clear();
-	rowNum = std::stoi(root["num"].asString());
-	for (int i = 0; i < rowNum; i++) {
-		string str;
-		vector<string> row;
-		for (int j = 0; j < colNum; j++) {
-			str = root["records"][i][colName[j]].asString();
-			row.push_back(str);
+	rowNum = 0;
+
+	// 仅当文件存在时再读取数据
+	ifstream infile(path);
+	if (infile.good()) {
+		rowNum = std::stoi(root["num"].asString());
+		for (int i = 0; i < rowNum; i++) {
+			string str;
+			vector<string> row;
+			for (int j = 0; j < colNum; j++) {
+				str = root["records"][i][colName[j]].asString();
+				row.push_back(str);
+			}
+			cols.push_back(row);
 		}
-		cols.push_back(row);
 	}
 }
 

@@ -135,11 +135,15 @@ void Database::deleteTable(int _TableIndex)
 	string nameDel = nameOfTables[_TableIndex];
 
 	vector<TableClass> newTables;
+	vector<string> newTableName;
 	newTables.assign(Tables.begin(), Tables.begin()+_TableIndex);
+	newTableName.assign(nameOfTables.begin(), nameOfTables.begin() + _TableIndex);
 	for (int i = _TableIndex + 1; i < numOfTable; i++) {
 		newTables.push_back(Tables[i]);
+		newTableName.push_back(nameOfTables[i]);
 	}
 	Tables = newTables;
+	nameOfTables = newTableName;
 	numOfTable--;
 
 	// É¾³ýÎÄ¼þ¼Ð

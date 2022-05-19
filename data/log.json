@@ -2,32 +2,10 @@
 	"log" : 
 	{
 		"database" : "db1",
-		"message" : "InsertRow(TABLE NAME:studentROW: 001 Smith RJ2005 3.5)",
-		"opr type" : "Insert Row"
+		"message" : "CreateTable(NAME:course, COLNUM:3)",
+		"opr type" : "Create Table"
 	},
 	"system" : "windows",
-	"time" : "2022-05-18 13:47:28.1267675",
-	"user" : "sys"
-},
-{
-	"log" : 
-	{
-		"database" : "db1",
-		"message" : "ChangeRow or InsertData(TABLE NAME:studentROW: 002 Dog RJ2222 3.9)",
-		"opr type" : "Change Row or Insert Data"
-	},
-	"system" : "windows",
-	"time" : "2022-05-18 13:47:28.1280274",
-	"user" : "sys"
-},
-{
-	"log" : 
-	{
-		"database" : "db1",
-		"message" : "ChangeRow or InsertData(TABLE NAME:studentROW: 189 NewName RJ2001 2.9)",
-		"opr type" : "Change Row or Insert Data"
-	},
-	"system" : "windows",
-	"time" : "2022-05-18 13:47:28.1288941",
+	"time" : "2022-05-19 02:12:42.2301491",
 	"user" : "sys"
 },

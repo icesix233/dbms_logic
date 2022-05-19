@@ -20,6 +20,7 @@ void testdatabase();
 void testtable();
 void testlog();
 void testlogger();
+void testsql();
 
 int main()
 {
@@ -30,10 +31,10 @@ int main()
 	//testdatabase();
 
 	/* table测试 */
-	testtable();
+	//testtable();
 	
 	/* sql命令测试 */
-	//testsql();
+	testsql();
 
 	/* json file测试 */
 	//testlog();
@@ -166,8 +167,12 @@ void createTableClassByInput() {
 }
 
 void testsql() {
-	string _test = "select name from student;";
-	bool success = analyzeTo(interception(processInput(_test)));
+	string cmd;
+	while (getline(cin, cmd)) {
+		bool success = analyzeTo(interception(processInput(cmd)));
+		if (success) cout << "success" << endl;
+		else cout << "fail" << endl;
+	}
 }
 
 void testlog() {
